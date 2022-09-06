@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace PracApp2
 {
@@ -26,6 +27,8 @@ namespace PracApp2
             }
         }
 
+        private string FixtureType;
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
@@ -47,6 +50,12 @@ namespace PracApp2
         private void testButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show(_BoardDirectoryValue);
+        }
+
+        private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            FixtureType = ((ComboBoxItem)FixtureTypeComboBox.SelectedItem).Content.ToString();
+            MessageBox.Show("Fixture type is: " + FixtureType);
         }
     }
 }

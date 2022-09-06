@@ -69,7 +69,7 @@
                 Height="20"
                 Width="80"
                 Click="boardDirectoryButton_Click" />
-        <ComboBox Name="FixtureType"
+        <ComboBox Name="FixtureTypeComboBox"
                   Text="Select type"
                   IsEditable="True"
                   IsReadOnly="True"
@@ -77,9 +77,10 @@
                   Width="100"
                   Grid.Column="1"
                   Grid.Row="2"
-                  HorizontalAlignment="Left">
-            <ComboBoxItem>Inline</ComboBoxItem>
-            <ComboBoxItem>Offline</ComboBoxItem>
+                  HorizontalAlignment="Left"
+                  SelectionChanged="FixtureType_SelectionChanged">
+            <ComboBoxItem Name="Inline">Inline</ComboBoxItem>
+            <ComboBoxItem Name="Offline">Offline</ComboBoxItem>
         </ComboBox>
         <StackPanel Grid.Column="0"
                     Grid.Row="4">
