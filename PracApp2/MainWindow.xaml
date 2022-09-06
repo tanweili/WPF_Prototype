@@ -99,11 +99,12 @@
             <Button x:Name="StartButton"
                     Content="Start"
                     Click="StartButton_Click" />
-            <Button x:Name="TestButton"
+            <Button x:Name="ShowDir"
                     Content="Show dir"
-                    Click="TestButton_Click" />
-            <Button x:Name="b3"
-                    Content="Placeholder" />
+                    Click="ShowDir_Click" />
+            <Button x:Name="SampleLogs"
+                    Content="Sample Logs"
+                    Click="SampleLogs_Click" />
             <Button x:Name="b4"
                     Content="Placeholder" />
             <Button x:Name="b5"
@@ -144,7 +145,10 @@
                      Text="Status"></TextBox>
         </StackPanel>
 
-        <TextBox Grid.Column="1"
+        <TextBox Name="LogsTextBox"
+                 TextWrapping="Wrap"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 Grid.Column="1"
                  Grid.Row="4"
                  Margin="5,0,5,5"
                  BorderBrush="Gray"

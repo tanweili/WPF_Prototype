@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Diagnostics;
 
 namespace PracApp2
 {
@@ -61,9 +62,23 @@ namespace PracApp2
             Result1.Foreground = Brushes.Green;
         }
 
-        private void TestButton_Click(object sender, RoutedEventArgs e)
+        private void ShowDir_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show(_BoardDirectoryValue);
+        }
+
+        private void SampleLogs_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo process = new ProcessStartInfo("cmd.exe");
+            process.UseShellExecute = false;
+            process.RedirectStandardInput = true;
+            process.RedirectStandardOutput = true;
+            process.CreateNoWindow = true;
+
+            var p1 = Process.Start(process);
+            p1.StandardInput.WriteLine("set");
+            p1.StandardInput.WriteLine("exit");
+            LogsTextBox.Text = p1.StandardOutput.ReadToEnd();
         }
 
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
