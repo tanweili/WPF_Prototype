@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PracApp2
 {
@@ -47,7 +48,20 @@ namespace PracApp2
             }
         }
 
-        private void testButton_Click(object sender, RoutedEventArgs e)
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(_BoardDirectoryValue))
+            {
+                Result1.Text = "Error";
+                Result1.Foreground = Brushes.Red;
+                MessageBox.Show("Please select a board folder");
+                return;
+            }
+            Result1.Text = "Okay";
+            Result1.Foreground = Brushes.Green;
+        }
+
+        private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show(_BoardDirectoryValue);
         }

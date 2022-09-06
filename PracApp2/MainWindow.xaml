@@ -96,11 +96,12 @@
                             Value="80" />
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="startButton"
-                    Content="Start" />
-            <Button x:Name="testButton"
+            <Button x:Name="StartButton"
+                    Content="Start"
+                    Click="StartButton_Click" />
+            <Button x:Name="TestButton"
                     Content="Show dir"
-                    Click="testButton_Click" />
+                    Click="TestButton_Click" />
             <Button x:Name="b3"
                     Content="Placeholder" />
             <Button x:Name="b4"
@@ -131,11 +132,16 @@
                             Value="0" />
                 </Style>
             </StackPanel.Resources>
-            <TextBox Text="Placeholder"></TextBox>
-            <TextBox Text="Placeholder"></TextBox>
-            <TextBox Text="Placeholder"></TextBox>
-            <TextBox Text="Placeholder"></TextBox>
-            <TextBox Text="Placeholder"></TextBox>
+            <TextBox x:Name="Result1"
+                     Text="Status"></TextBox>
+            <TextBox x:Name="Result2"
+                     Text="Status"></TextBox>
+            <TextBox x:Name="Result3"
+                     Text="Status"></TextBox>
+            <TextBox x:Name="Result4"
+                     Text="Status"></TextBox>
+            <TextBox x:Name="Result5"
+                     Text="Status"></TextBox>
         </StackPanel>
 
         <TextBox Grid.Column="1"
