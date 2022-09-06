@@ -1,33 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PracApp2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : INotifyPropertyChanged
     {
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
+        }
+
+        private string _BoardDirectoryValue;
+        public string BoardDirectoryValue
+        {
+            get { return _BoardDirectoryValue; }
+            set
+            {
+                _BoardDirectoryValue = value;
+                OnPropertyChanged("BoardDirectoryValue");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
         }
 
         private void boardDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
+            System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult dialogResult = folderBrowserDialog.ShowDialog();
 
+            if (dialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                BoardDirectoryValue = folderBrowserDialog.SelectedPath;
+                System.Windows.MessageBox.Show(_BoardDirectoryValue);
+            }
+        }
+
+        private void testButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show(_BoardDirectoryValue);
         }
     }
 }

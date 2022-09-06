@@ -54,8 +54,8 @@
                    TextWrapping="Wrap"
                    Text="Fixture Type"
                    Grid.Row="2" />
-        <TextBox x:Name="boardDirectory"
-                 Text=""
+        <TextBox x:Name="boardDirectoryTextBox"
+                 Text="{Binding Path=BoardDirectoryValue, Mode=TwoWay}"
                  VerticalAlignment="Center"
                  BorderBrush="Gray"
                  BorderThickness="1 1 0 0"
@@ -90,8 +90,9 @@
             </StackPanel.Resources>
             <Button x:Name="startButton"
                     Content="Start" />
-            <Button x:Name="b2"
-                    Content="b2" />
+            <Button x:Name="testButton"
+                    Content="Show dir"
+                    Click="testButton_Click" />
             <Button x:Name="b3"
                     Content="b3" />
             <Button x:Name="b4"
@@ -122,11 +123,11 @@
                             Value="0" />
                 </Style>
             </StackPanel.Resources>
-            <TextBox Text="Completed"></TextBox>
-            <TextBox Text="Error!"></TextBox>
-            <TextBox Text="Error!"></TextBox>
-            <TextBox Text="Error!"></TextBox>
-            <TextBox Text="Error!"></TextBox>
+            <TextBox Text="Placeholder"></TextBox>
+            <TextBox Text="Placeholder"></TextBox>
+            <TextBox Text="Placeholder"></TextBox>
+            <TextBox Text="Placeholder"></TextBox>
+            <TextBox Text="Placeholder"></TextBox>
         </StackPanel>
 
         <TextBox Grid.Column="1"
