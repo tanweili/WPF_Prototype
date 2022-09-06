@@ -29,17 +29,17 @@
                   Background="white"
                   BorderBrush="Gray"
                   BorderThickness="0 0 0 1">
-                <MenuItem Header="_File"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center">
-                    <MenuItem Header="_Lorem" />
-                    <MenuItem Header="_Ipsum" />
-                </MenuItem>
                 <MenuItem Header="_Action"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center">
-                    <MenuItem Header="Lorem" />
-                    <MenuItem Header="_Ipsum" />
+                    <MenuItem Header="_Run all to completion" />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Help"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
+                    <MenuItem Header="_Help" />
+                    <MenuItem Header="_About" />
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -69,11 +69,18 @@
                 Height="20"
                 Width="80"
                 Click="boardDirectoryButton_Click" />
-        <ComboBox Height="20"
+        <ComboBox Name="FixtureType"
+                  Text="Select type"
+                  IsEditable="True"
+                  IsReadOnly="True"
+                  Height="22"
                   Width="100"
                   Grid.Column="1"
                   Grid.Row="2"
-                  HorizontalAlignment="Left" />
+                  HorizontalAlignment="Left">
+            <ComboBoxItem>Inline</ComboBoxItem>
+            <ComboBoxItem>Offline</ComboBoxItem>
+        </ComboBox>
         <StackPanel Grid.Column="0"
                     Grid.Row="4">
             <StackPanel.Resources>
@@ -94,11 +101,11 @@
                     Content="Show dir"
                     Click="testButton_Click" />
             <Button x:Name="b3"
-                    Content="b3" />
+                    Content="Placeholder" />
             <Button x:Name="b4"
-                    Content="b4" />
+                    Content="Placeholder" />
             <Button x:Name="b5"
-                    Content="b5" />
+                    Content="Placeholder" />
         </StackPanel>
 
         <StackPanel Grid.Column="3"

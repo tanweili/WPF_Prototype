@@ -27,12 +27,9 @@ namespace PracApp2
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyname)
+        private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
         private void boardDirectoryButton_Click(object sender, RoutedEventArgs e)
