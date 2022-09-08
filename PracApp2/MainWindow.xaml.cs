@@ -55,11 +55,13 @@ namespace PracApp2
             {
                 Result1.Text = "Error";
                 Result1.Foreground = Brushes.Red;
+                Result1.FontWeight = FontWeights.Bold;
                 MessageBox.Show("Please select a board folder");
                 return;
             }
             Result1.Text = "Okay";
             Result1.Foreground = Brushes.Green;
+            Result1.FontWeight = FontWeights.Bold;
         }
 
         private void ShowDir_Click(object sender, RoutedEventArgs e)

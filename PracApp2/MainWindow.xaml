@@ -33,6 +33,7 @@
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center">
                     <MenuItem Header="_Run all to completion" />
+                    <MenuItem Header="_Reset selected folder" />
                     <MenuItem Header="_Exit" />
                 </MenuItem>
                 <MenuItem Header="_Help"
@@ -46,19 +47,17 @@
 
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   TextWrapping="Wrap"
                    Text="Board Directory"
                    Grid.Row="1" />
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   TextWrapping="Wrap"
                    Text="Fixture Type"
                    Grid.Row="2" />
         <TextBox x:Name="boardDirectoryTextBox"
                  Text="{Binding Path=BoardDirectoryValue, Mode=TwoWay}"
                  VerticalAlignment="Center"
                  BorderBrush="Gray"
-                 BorderThickness="1 1 0 0"
+                 BorderThickness="1"
                  Grid.Column="1"
                  Grid.Row="1" />
         <Button x:Name="boardDirectoryButton"
@@ -85,64 +84,52 @@
         <StackPanel Grid.Column="0"
                     Grid.Row="4">
             <StackPanel.Resources>
-                <Style TargetType="{x:Type Button}">
+                <Style x:Key="BaseStyle" TargetType="{x:Type FrameworkElement}">
                     <Setter Property="Margin"
-                            Value="0,0,0,30" />
+                            Value="0,0,0,10" />
                     <Setter Property="HorizontalAlignment"
                             Value="Center" />
                     <Setter Property="Height"
                             Value="20" />
                     <Setter Property="Width"
                             Value="80" />
+                </Style>
+                <Style TargetType="{x:Type Button}"
+                       BasedOn="{StaticResource BaseStyle}" />
+
+                <Style TargetType="{x:Type TextBox}"
+                       BasedOn="{StaticResource BaseStyle}">
+                    <Setter Property="TextAlignment"
+                            Value="Center" />
+                    <Setter Property="Background"
+                            Value="LightGray" />
+                    <Setter Property="BorderThickness"
+                            Value="0" />
                 </Style>
             </StackPanel.Resources>
             <Button x:Name="StartButton"
                     Content="Start"
                     Click="StartButton_Click" />
+            <TextBox x:Name="Result1"
+                     Text="" />
             <Button x:Name="ShowDir"
                     Content="Show dir"
                     Click="ShowDir_Click" />
+            <TextBox x:Name="Result2"
+                     Text="Placeholder" />
             <Button x:Name="SampleLogs"
                     Content="Sample Logs"
                     Click="SampleLogs_Click" />
+            <TextBox x:Name="Result3"
+                     Text="Placeholder" />
             <Button x:Name="b4"
                     Content="Placeholder" />
+            <TextBox x:Name="Result4"
+                     Text="Placeholder" />
             <Button x:Name="b5"
                     Content="Placeholder" />
-        </StackPanel>
-
-        <StackPanel Grid.Column="3"
-                    Grid.Row="4">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Margin"
-                            Value="0,0,0,30" />
-                    <Setter Property="HorizontalAlignment"
-                            Value="Center" />
-                    <Setter Property="VerticalAlignment"
-                            Value="Center" />
-                    <Setter Property="TextAlignment"
-                            Value="Center" />
-                    <Setter Property="Background"
-                            Value="LightGray" />
-                    <Setter Property="Height"
-                            Value="20" />
-                    <Setter Property="Width"
-                            Value="80" />
-                    <Setter Property="BorderThickness"
-                            Value="0" />
-                </Style>
-            </StackPanel.Resources>
-            <TextBox x:Name="Result1"
-                     Text="Status"></TextBox>
-            <TextBox x:Name="Result2"
-                     Text="Status"></TextBox>
-            <TextBox x:Name="Result3"
-                     Text="Status"></TextBox>
-            <TextBox x:Name="Result4"
-                     Text="Status"></TextBox>
             <TextBox x:Name="Result5"
-                     Text="Status"></TextBox>
+                     Text="Placeholder" />
         </StackPanel>
 
         <TextBox Name="LogsTextBox"
@@ -150,8 +137,9 @@
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  Grid.Column="1"
                  Grid.Row="4"
-                 Margin="5,0,5,5"
+                 Grid.ColumnSpan="2"
+                 Margin="5,0,10,5"
                  BorderBrush="Gray"
-                 BorderThickness="1 1 0 0" />
+                 BorderThickness="1" />
     </Grid>
 </Window>
