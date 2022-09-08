@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
+using System;
 
 namespace PracApp2
 {
@@ -53,20 +54,24 @@ namespace PracApp2
         {
             if (string.IsNullOrEmpty(_BoardDirectoryValue))
             {
-                Result1.Text = "Error";
-                Result1.Foreground = Brushes.Red;
-                Result1.FontWeight = FontWeights.Bold;
+                displayError(Result1);
                 MessageBox.Show("Please select a board folder");
                 return;
             }
-            Result1.Text = "Okay";
-            Result1.Foreground = Brushes.Green;
-            Result1.FontWeight = FontWeights.Bold;
+            displayOkay(Result1);
         }
 
         private void ShowDir_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show(_BoardDirectoryValue);
+            try
+            {
+                MessageBox.Show(_BoardDirectoryValue);
+                displayOkay(Result2);
+            } catch (Exception err)
+            {
+                displayError(Result2);
+                MessageBox.Show(err.ToString());
+            }
         }
 
         private void SampleLogs_Click(object sender, RoutedEventArgs e)
@@ -87,6 +92,20 @@ namespace PracApp2
         {
             FixtureType = ((ComboBoxItem)FixtureTypeComboBox.SelectedItem).Content.ToString();
             MessageBox.Show("Fixture type is: " + FixtureType);
+        }
+
+        private void displayOkay(TextBox textBox)
+        {
+            textBox.Text = "Okay";
+            textBox.Foreground = Brushes.Green;
+            textBox.FontWeight = FontWeights.Bold;
+        }
+
+        private void displayError(TextBox textBox)
+        {
+            textBox.Text = "Error";
+            textBox.Foreground = Brushes.Red;
+            textBox.FontWeight = FontWeights.Bold;
         }
     }
 }
