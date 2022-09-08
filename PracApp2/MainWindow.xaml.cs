@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
 using System;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.ComponentModel.Design.Serialization;
 
 namespace PracApp2
 {
@@ -88,10 +90,20 @@ namespace PracApp2
             LogsTextBox.Text = p1.StandardOutput.ReadToEnd();
         }
 
+        private void BTBasic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             FixtureType = ((ComboBoxItem)FixtureTypeComboBox.SelectedItem).Content.ToString();
             MessageBox.Show("Fixture type is: " + FixtureType);
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            resetDisplay();
         }
 
         private void displayOkay(TextBox textBox)
@@ -106,6 +118,15 @@ namespace PracApp2
             textBox.Text = "Error";
             textBox.Foreground = Brushes.Red;
             textBox.FontWeight = FontWeights.Bold;
+        }
+
+        private void resetDisplay()
+        {
+            foreach(object child in leftPanel.Children)
+            {
+                if (child is TextBox)
+                    (child as TextBox).Text = "";
+            }
         }
     }
 }
