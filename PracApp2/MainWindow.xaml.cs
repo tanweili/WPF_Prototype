@@ -124,15 +124,8 @@ namespace PracApp2
 
         private void RunAllSteps(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                pressButton(BackupButton);
-                pressButton(EditButton);
-            } catch (Exception err)
-            {
-                MessageBox.Show(err.ToString());
-                LogsTextBox.AppendText(err.ToString());
-            }
+            BackupButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            EditButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }
 
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -167,14 +160,5 @@ namespace PracApp2
                     (child as TextBox).Text = "";
             }
         }
-        private void pressButton(Button button)
-        {
-            ButtonAutomationPeer peer = new ButtonAutomationPeer(button);
-            IInvokeProvider invokeProvider = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
-            invokeProvider.Invoke();
-        }
-     
-
-
     }
 }
