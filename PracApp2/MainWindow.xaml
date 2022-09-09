@@ -32,7 +32,7 @@
                 <MenuItem Header="_Action"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center">
-                    <MenuItem Header="_Run all to completion" />
+                    <MenuItem Header="_Run all to completion" Click="RunAllSteps" />
                     <MenuItem Header="_Reset selected folder"
                               Click="Reset_Click" />
                     <MenuItem Header="_Exit" />

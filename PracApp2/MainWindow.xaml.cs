@@ -9,6 +9,8 @@ using System.IO;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.ComponentModel.Design.Serialization;
 using System.IO.Compression;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace PracApp2
 {
@@ -120,6 +122,19 @@ namespace PracApp2
 
         }
 
+        private void RunAllSteps(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                pressButton(BackupButton);
+                pressButton(EditButton);
+            } catch (Exception err)
+            {
+                MessageBox.Show(err.ToString());
+                LogsTextBox.AppendText(err.ToString());
+            }
+        }
+
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             FixtureType = ((ComboBoxItem)FixtureTypeComboBox.SelectedItem).Content.ToString();
@@ -152,6 +167,13 @@ namespace PracApp2
                     (child as TextBox).Text = "";
             }
         }
+        private void pressButton(Button button)
+        {
+            ButtonAutomationPeer peer = new ButtonAutomationPeer(button);
+            IInvokeProvider invokeProvider = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+            invokeProvider.Invoke();
+        }
+     
 
 
     }
