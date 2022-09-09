@@ -68,12 +68,13 @@ namespace PracApp2
                 string backupFolder = parentFolder + String.Format("{0}_testBackup.zip", folderName);
                 ZipFile.CreateFromDirectory(_BoardDirectoryValue, backupFolder);
                 displayOkay(Backup_Result);
-                LogsTextBox.AppendText($"Backup folder {folderName}_backup.zip created in {parentFolder}.");
+                LogsTextBox.AppendText($"Backup folder {folderName}_backup.zip created in {parentFolder}.\n");
             }
             catch (Exception err)
             {
                 displayError(Backup_Result);
-                MessageBox.Show("Error while creating backup zip file. Please delete the previous backup in the same directory if it exists.");
+                MessageBox.Show("Error while creating backup zip file. Please delete the previous backup in the same directory if it exists.\n");
+                LogsTextBox.AppendText("Error while creating backup zip file. Please delete the previous backup in the same directory if it exists.\n");
             }
         }
 
@@ -91,9 +92,11 @@ namespace PracApp2
                 fileContents = fileContents.Replace("World", "World after editing this file!");
                 System.IO.File.WriteAllText(_BoardDirectoryValue + @"\board_after_editing", fileContents);
                 displayOkay(Edit_Result);
+                LogsTextBox.AppendText("File has been edited.\n");
             } catch (Exception err)
             {
                 MessageBox.Show(err.ToString());
+                LogsTextBox.AppendText(err.ToString());
                 displayError(Edit_Result);
             }
         }
@@ -110,6 +113,11 @@ namespace PracApp2
             p1.StandardInput.WriteLine("set");
             p1.StandardInput.WriteLine("exit");
             LogsTextBox.Text = p1.StandardOutput.ReadToEnd();
+        }
+
+        private void SaveLogsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -145,9 +153,6 @@ namespace PracApp2
             }
         }
 
-        private void SaveLogsButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }
