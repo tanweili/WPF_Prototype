@@ -33,7 +33,8 @@
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center">
                     <MenuItem Header="_Run all to completion" />
-                    <MenuItem Header="_Reset selected folder" Click="Reset_Click" />
+                    <MenuItem Header="_Reset selected folder"
+                              Click="Reset_Click" />
                     <MenuItem Header="_Exit" />
                 </MenuItem>
                 <MenuItem Header="_Help"
@@ -81,12 +82,12 @@
             <ComboBoxItem Name="Inline">Inline</ComboBoxItem>
             <ComboBoxItem Name="Offline">Offline</ComboBoxItem>
         </ComboBox>
-        <StackPanel 
-            Name="leftPanel"
-            Grid.Column="0"
+        <StackPanel Name="leftPanel"
+                    Grid.Column="0"
                     Grid.Row="4">
             <StackPanel.Resources>
-                <Style x:Key="BaseStyle" TargetType="{x:Type FrameworkElement}">
+                <Style x:Key="BaseStyle"
+                       TargetType="{x:Type FrameworkElement}">
                     <Setter Property="Margin"
                             Value="0,0,0,10" />
                     <Setter Property="HorizontalAlignment"
@@ -109,15 +110,17 @@
                             Value="0" />
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="StartButton"
-                    Content="Start"
-                    Click="StartButton_Click" />
-            <TextBox x:Name="Result1"
+            <Button x:Name="BackupButton"
+                    Content="Backup"
+                    Click="BackupButton_Click" 
+                    ToolTip="Creates a backup .zip file before conversion"/>
+            <TextBox x:Name="Backup_Result"
                      Text="" />
-            <Button x:Name="ShowDir"
-                    Content="Show dir"
-                    Click="ShowDir_Click" />
-            <TextBox x:Name="Result2"
+            <Button x:Name="EditButton"
+                    Content="Edit"
+                    Click="EditButton_Click"
+                    ToolTip="Edits the board file"/>
+            <TextBox x:Name="Edit_Result"
                      Text="" />
             <Button x:Name="SampleLogs"
                     Content="Sample Logs"
@@ -125,13 +128,13 @@
             <TextBox x:Name="Result3"
                      Text="" />
             <Button x:Name="b4"
-                    Content="BT Basic"
-                    Click="BTBasic_Click"/>
+                    Content="Placeholder" />
             <TextBox x:Name="Result4"
                      Text="" />
-            <Button x:Name="b5"
-                    Content="Placeholder" />
-            <TextBox x:Name="Result5"
+            <Button x:Name="SaveLogsButton"
+                    Content="Save Logs"
+                    Click="SaveLogsButton_Click"/>
+            <TextBox x:Name="SaveLogsResult"
                      Text="" />
         </StackPanel>
 

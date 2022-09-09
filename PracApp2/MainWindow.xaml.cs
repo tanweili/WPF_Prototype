@@ -5,8 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
 using System;
+using System.IO;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.ComponentModel.Design.Serialization;
+using System.IO.Compression;
 
 namespace PracApp2
 {
@@ -48,31 +50,51 @@ namespace PracApp2
             if (dialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 BoardDirectoryValue = folderBrowserDialog.SelectedPath;
-                System.Windows.MessageBox.Show(_BoardDirectoryValue);
             }
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private void BackupButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(_BoardDirectoryValue))
             {
-                displayError(Result1);
+                displayError(Backup_Result);
                 MessageBox.Show("Please select a board folder");
                 return;
             }
-            displayOkay(Result1);
-        }
-
-        private void ShowDir_Click(object sender, RoutedEventArgs e)
-        {
             try
             {
-                MessageBox.Show(_BoardDirectoryValue);
-                displayOkay(Result2);
+                string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
+                string folderName = _BoardDirectoryValue.Replace(parentFolder, "");
+                string backupFolder = parentFolder + String.Format("{0}_testBackup.zip", folderName);
+                ZipFile.CreateFromDirectory(_BoardDirectoryValue, backupFolder);
+                displayOkay(Backup_Result);
+                LogsTextBox.AppendText($"Backup folder {folderName}_backup.zip created in {parentFolder}.");
+            }
+            catch (Exception err)
+            {
+                displayError(Backup_Result);
+                MessageBox.Show("Error while creating backup zip file. Please delete the previous backup in the same directory if it exists.");
+            }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        { 
+            if (Backup_Result.Text != "Okay")
+            {
+                displayError(Edit_Result);
+                MessageBox.Show("Please backup the folder first.");
+                return;
+            }
+            try
+            {
+                var fileContents = System.IO.File.ReadAllText(_BoardDirectoryValue + @"\board");
+                fileContents = fileContents.Replace("World", "World after editing this file!");
+                System.IO.File.WriteAllText(_BoardDirectoryValue + @"\board_after_editing", fileContents);
+                displayOkay(Edit_Result);
             } catch (Exception err)
             {
-                displayError(Result2);
                 MessageBox.Show(err.ToString());
+                displayError(Edit_Result);
             }
         }
 
@@ -90,15 +112,9 @@ namespace PracApp2
             LogsTextBox.Text = p1.StandardOutput.ReadToEnd();
         }
 
-        private void BTBasic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void FixtureType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             FixtureType = ((ComboBoxItem)FixtureTypeComboBox.SelectedItem).Content.ToString();
-            MessageBox.Show("Fixture type is: " + FixtureType);
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -122,11 +138,16 @@ namespace PracApp2
 
         private void resetDisplay()
         {
-            foreach(object child in leftPanel.Children)
+            foreach (object child in leftPanel.Children)
             {
                 if (child is TextBox)
                     (child as TextBox).Text = "";
             }
+        }
+
+        private void SaveLogsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
