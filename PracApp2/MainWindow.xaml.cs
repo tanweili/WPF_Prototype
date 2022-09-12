@@ -6,11 +6,7 @@ using System.Windows.Media;
 using System.Diagnostics;
 using System;
 using System.IO;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.ComponentModel.Design.Serialization;
 using System.IO.Compression;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
 
 namespace PracApp2
 {
@@ -23,7 +19,7 @@ namespace PracApp2
         {
             DataContext = this;
             
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
@@ -69,8 +65,8 @@ namespace PracApp2
             {
                 string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
                 string folderName = _BoardDirectoryValue.Replace(parentFolder, "");
-                string backupFolder = parentFolder + String.Format("{0}_testBackup.zip", folderName);
-                ZipFile.CreateFromDirectory(_BoardDirectoryValue, backupFolder);
+                string backupZip = parentFolder + String.Format("{0}_testBackup.zip", folderName);
+                ZipFile.CreateFromDirectory(_BoardDirectoryValue, backupZip);
                 displayOkay(Backup_Result);
                 LogsTextBox.AppendText($"Backup folder {folderName}_backup.zip created in {parentFolder}.\n");
             }
@@ -121,7 +117,10 @@ namespace PracApp2
 
         private void SaveLogsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
+            string logFile = parentFolder + String.Format(@"\Logs.txt");
+            File.WriteAllText(logFile, LogsTextBox.Text);
+            LogsTextBox.AppendText("Logs saved to logs file in folder.");
         }
 
         private void ClearLogsButton_Click(object sender, RoutedEventArgs e)
@@ -168,6 +167,27 @@ namespace PracApp2
                 if (child is TextBox)
                     (child as TextBox).Text = "";
             }
+        }
+
+        protected internal void resetFolder()
+        {
+            string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
+            string folderName = _BoardDirectoryValue.Replace(parentFolder, "");
+            string backupZip = parentFolder + String.Format("{0}_testBackup.zip", folderName);
+
+            DirectoryInfo Dir = new DirectoryInfo(_BoardDirectoryValue);
+            foreach (FileInfo file in Dir.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in Dir.GetDirectories())
+            {
+                dir.Delete();
+            }
+
+            ZipFile.ExtractToDirectory(backupZip, _BoardDirectoryValue);
+            File.Delete(backupZip);
+            LogsTextBox.AppendText($"Folder {folderName} has been restored.");
         }
     }
 }

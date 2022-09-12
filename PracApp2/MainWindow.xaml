@@ -107,10 +107,6 @@
                     Click="SampleLogs_Click" />
             <TextBox x:Name="Result3"
                      Text="" />
-            <Button x:Name="b4"
-                    Content="Placeholder" />
-            <TextBox x:Name="Result4"
-                     Text="" />
             <Button x:Name="SaveLogsButton"
                     Content="Save Logs"
                     Click="SaveLogsButton_Click" />
