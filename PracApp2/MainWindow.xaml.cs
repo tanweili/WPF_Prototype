@@ -67,7 +67,7 @@ namespace PracApp2
                 string folderName = _BoardDirectoryValue.Replace(parentFolder, "");
                 string backupZip = parentFolder + String.Format("{0}_testBackup.zip", folderName);
                 ZipFile.CreateFromDirectory(_BoardDirectoryValue, backupZip);
-                displayOkay(Backup_Result);
+                displayDone(Backup_Result);
                 LogsTextBox.AppendText($"Backup folder {folderName}_backup.zip created in {parentFolder}.\n");
             }
             catch (Exception err)
@@ -91,7 +91,7 @@ namespace PracApp2
                 var fileContents = System.IO.File.ReadAllText(_BoardDirectoryValue + @"\board");
                 fileContents = fileContents.Replace("World", "World after editing this file!");
                 System.IO.File.WriteAllText(_BoardDirectoryValue + @"\board_after_editing", fileContents);
-                displayOkay(Edit_Result);
+                displayDone(Edit_Result);
                 LogsTextBox.AppendText("File has been edited.\n");
             } catch (Exception err)
             {
@@ -146,9 +146,9 @@ namespace PracApp2
             resetWindow.ShowDialog();
         }
 
-        private void displayOkay(TextBox textBox)
+        private void displayDone(TextBox textBox)
         {
-            textBox.Text = "Okay";
+            textBox.Text = "Done";
             textBox.Foreground = Brushes.Green;
             textBox.FontWeight = FontWeights.Bold;
         }
