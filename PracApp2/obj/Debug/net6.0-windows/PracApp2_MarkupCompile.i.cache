@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\weitan4\VStudio2022\repos\PracApp2\PracApp2\App.xaml
-11407045341
+2-720930461
 
-5211364
+6-320088719
 203-1872599769
-MainWindow.xaml;
+MainWindow.xaml;ResetWindow.xaml;
 
-False
+True
 

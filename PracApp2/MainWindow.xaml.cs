@@ -22,6 +22,7 @@ namespace PracApp2
         public MainWindow()
         {
             DataContext = this;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
@@ -122,6 +123,11 @@ namespace PracApp2
 
         }
 
+        private void ClearLogsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void RunAllSteps(object sender, RoutedEventArgs e)
         {
             BackupButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
@@ -136,6 +142,8 @@ namespace PracApp2
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             resetDisplay();
+            ResetWindow resetWindow = new ResetWindow();
+            resetWindow.ShowDialog();
         }
 
         private void displayOkay(TextBox textBox)
@@ -160,5 +168,7 @@ namespace PracApp2
                     (child as TextBox).Text = "";
             }
         }
+
+
     }
 }

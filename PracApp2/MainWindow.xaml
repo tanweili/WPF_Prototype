@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracApp2"
         mc:Ignorable="d"
-        Title="PracApp2!"
-        Height="450"
+        Title="MainWindow"
+        Height="500"
         Width="500"
         ResizeMode="NoResize">
     <Grid x:Name="grid"
-          Background="LightGray">
+          Background="{StaticResource BackgroundColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3*" />
@@ -32,7 +32,8 @@
                 <MenuItem Header="_Action"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center">
-                    <MenuItem Header="_Run all to completion" Click="RunAllSteps" />
+                    <MenuItem Header="_Run all to completion"
+                              Click="RunAllSteps" />
                     <MenuItem Header="_Reset selected folder"
                               Click="Reset_Click" />
                     <MenuItem Header="_Exit" />
@@ -62,12 +63,10 @@
                  Grid.Column="1"
                  Grid.Row="1" />
         <Button x:Name="boardDirectoryButton"
+                Style="{StaticResource ButtonStyle}"
                 Content="Browse"
-                HorizontalAlignment="Center"
                 Grid.Column="3"
                 Grid.Row="1"
-                Height="20"
-                Width="80"
                 Click="boardDirectoryButton_Click" />
         <ComboBox Name="FixtureTypeComboBox"
                   Text="Select type"
@@ -86,40 +85,20 @@
                     Grid.Column="0"
                     Grid.Row="4">
             <StackPanel.Resources>
-                <Style x:Key="BaseStyle"
-                       TargetType="{x:Type FrameworkElement}">
-                    <Setter Property="Margin"
-                            Value="0,0,0,10" />
-                    <Setter Property="HorizontalAlignment"
-                            Value="Center" />
-                    <Setter Property="Height"
-                            Value="20" />
-                    <Setter Property="Width"
-                            Value="80" />
-                </Style>
-                <Style TargetType="{x:Type Button}"
-                       BasedOn="{StaticResource BaseStyle}" />
-
-                <Style TargetType="{x:Type TextBox}"
-                       BasedOn="{StaticResource BaseStyle}">
-                    <Setter Property="TextAlignment"
-                            Value="Center" />
-                    <Setter Property="Background"
-                            Value="LightGray" />
-                    <Setter Property="BorderThickness"
-                            Value="0" />
-                </Style>
+                <Style BasedOn="{StaticResource StackPanelButtonStyle}"
+                       TargetType="{x:Type Button}" />
+                <Style BasedOn="{StaticResource StackPanelTextBoxStyle}" TargetType="{x:Type TextBox}"/>
             </StackPanel.Resources>
             <Button x:Name="BackupButton"
                     Content="Backup"
-                    Click="BackupButton_Click" 
-                    ToolTip="Creates a backup .zip file before conversion"/>
+                    Click="BackupButton_Click"
+                    ToolTip="Creates a backup .zip file before conversion" />
             <TextBox x:Name="Backup_Result"
                      Text="" />
             <Button x:Name="EditButton"
                     Content="Edit"
                     Click="EditButton_Click"
-                    ToolTip="Edits the board file"/>
+                    ToolTip="Edits the board file" />
             <TextBox x:Name="Edit_Result"
                      Text="" />
             <Button x:Name="SampleLogs"
@@ -133,9 +112,12 @@
                      Text="" />
             <Button x:Name="SaveLogsButton"
                     Content="Save Logs"
-                    Click="SaveLogsButton_Click"/>
+                    Click="SaveLogsButton_Click" />
             <TextBox x:Name="SaveLogsResult"
                      Text="" />
+            <Button x:Name="ClearLogsButton"
+                    Content="Clear Logs"
+                    Click="ClearLogsButton_Click" />
         </StackPanel>
 
         <TextBox Name="LogsTextBox"
