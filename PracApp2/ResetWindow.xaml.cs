@@ -24,5 +24,16 @@ namespace PracApp2
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
+
+        private void ProceedButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)this.Owner).resetDisplay();
+            this.Close();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

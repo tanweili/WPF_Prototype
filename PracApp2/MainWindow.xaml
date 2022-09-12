@@ -87,7 +87,8 @@
             <StackPanel.Resources>
                 <Style BasedOn="{StaticResource StackPanelButtonStyle}"
                        TargetType="{x:Type Button}" />
-                <Style BasedOn="{StaticResource StackPanelTextBoxStyle}" TargetType="{x:Type TextBox}"/>
+                <Style BasedOn="{StaticResource StackPanelTextBoxStyle}"
+                       TargetType="{x:Type TextBox}" />
             </StackPanel.Resources>
             <Button x:Name="BackupButton"
                     Content="Backup"

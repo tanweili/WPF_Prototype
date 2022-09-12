@@ -9,8 +9,35 @@
         Height="150"
         Width="250"
         ResizeMode="NoResize">
-    
-    <Grid>
 
+    <Grid x:Name="grid"
+          Background="{StaticResource BackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="This will reset the current folder using the backup. Proceed?"
+                   Grid.ColumnSpan="2"
+                   TextAlignment="Center"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap" />
+        <Button x:Name="ProceedButton"
+                Style="{StaticResource ButtonStyle}"
+                Content="Proceed"
+                Grid.Row="1"
+                Grid.Column="0"
+                Click="ProceedButton_Click" />
+        <Button x:Name="CancelButton"
+                Style="{StaticResource ButtonStyle}"
+                Content="Cancel"
+                Grid.Row="1"
+                Grid.Column="1"
+                Click="CancelButton_Click" />
     </Grid>
 </Window>
