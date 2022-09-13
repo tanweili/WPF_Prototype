@@ -36,7 +36,8 @@
                               Click="RunAllSteps" />
                     <MenuItem Header="_Reset selected folder"
                               Click="Reset_Click" />
-                    <MenuItem Header="_Exit" />
+                    <MenuItem Header="_Exit"
+                              Click="Exit_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Help"
                           VerticalAlignment="Center"

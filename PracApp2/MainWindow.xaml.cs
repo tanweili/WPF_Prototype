@@ -151,6 +151,11 @@ namespace PracApp2
             resetWindow.ShowDialog();
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void displayDone(TextBox textBox)
         {
             textBox.Text = "Done";
