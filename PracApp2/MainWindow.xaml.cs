@@ -117,6 +117,11 @@ namespace PracApp2
 
         private void SaveLogsButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(_BoardDirectoryValue))
+            {
+                MessageBox.Show("No board folder selected..");
+                return;
+            }
             string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
             string logFile = parentFolder + String.Format(@"\Logs.txt");
             File.WriteAllText(logFile, LogsTextBox.Text);
