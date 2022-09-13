@@ -80,7 +80,7 @@ namespace PracApp2
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         { 
-            if (Backup_Result.Text != "Okay")
+            if (Backup_Result.Text != "Done")
             {
                 displayError(Edit_Result);
                 MessageBox.Show("Please backup the folder first.");
@@ -171,19 +171,34 @@ namespace PracApp2
 
         protected internal void resetFolder()
         {
+            if (string.IsNullOrEmpty(_BoardDirectoryValue))
+            {
+                MessageBox.Show("No board folder selected..");
+                return;
+            }
+
             string parentFolder = System.IO.Directory.GetParent(_BoardDirectoryValue).FullName;
             string folderName = _BoardDirectoryValue.Replace(parentFolder, "");
             string backupZip = parentFolder + String.Format("{0}_testBackup.zip", folderName);
 
             DirectoryInfo Dir = new DirectoryInfo(_BoardDirectoryValue);
-            foreach (FileInfo file in Dir.GetFiles())
+
+            if (File.Exists(backupZip))
             {
-                file.Delete();
-            }
-            foreach (DirectoryInfo dir in Dir.GetDirectories())
+                foreach (FileInfo file in Dir.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo dir in Dir.GetDirectories())
+                {
+                    dir.Delete();
+                }
+            } else
             {
-                dir.Delete();
+                MessageBox.Show("Backup zip file does not exist to restore folder.");
+                return;
             }
+
 
             ZipFile.ExtractToDirectory(backupZip, _BoardDirectoryValue);
             File.Delete(backupZip);
