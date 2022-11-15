@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\weitan4\\VStudio2022\\repos\\PracApp2\\PracApp2\\PracApp2.csproj": {}
+    "C:\\Users\\weitan4\\VStudioProjects\\repos\\PracApp2\\PracApp2\\PracApp2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\weitan4\\VStudio2022\\repos\\PracApp2\\PracApp2\\PracApp2.csproj": {
+    "C:\\Users\\weitan4\\VStudioProjects\\repos\\PracApp2\\PracApp2\\PracApp2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\weitan4\\VStudio2022\\repos\\PracApp2\\PracApp2\\PracApp2.csproj",
+        "projectUniqueName": "C:\\Users\\weitan4\\VStudioProjects\\repos\\PracApp2\\PracApp2\\PracApp2.csproj",
         "projectName": "PracApp2",
-        "projectPath": "C:\\Users\\weitan4\\VStudio2022\\repos\\PracApp2\\PracApp2\\PracApp2.csproj",
+        "projectPath": "C:\\Users\\weitan4\\VStudioProjects\\repos\\PracApp2\\PracApp2\\PracApp2.csproj",
         "packagesPath": "C:\\Users\\weitan4\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\weitan4\\VStudio2022\\repos\\PracApp2\\PracApp2\\obj\\",
+        "outputPath": "C:\\Users\\weitan4\\VStudioProjects\\repos\\PracApp2\\PracApp2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\weitan4\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
